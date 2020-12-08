@@ -11,7 +11,7 @@ export default async function Mostafeed(req, res) {
   for (let i = 0; i < 3; i++) {
     //replies[i] = { "message":  mostafeedInfoRes[i]}
     replies[i] = {
-      "message": `${mostafeedInfoRes[0]} 	%0a ${mostafeedInfoRes[1]}`
+      "message": `${mostafeedInfoRes[0]} \n ${mostafeedInfoRes[1]}`
     };
   }
 
