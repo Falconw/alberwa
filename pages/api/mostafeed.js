@@ -8,8 +8,20 @@ export default async function Mostafeed(req, res) {
   
   let replies = [];
 
-  for (let i = 0; i < 18; i++) {
-    replies[i] = { "message":  mostafeedInfoRes[i]}
+  for (let i = 0; i < 3; i++) {
+    //replies[i] = { "message":  mostafeedInfoRes[i]}
+    replies[i] = {
+      "message": () => {
+        return (
+          mostafeedInfoRes[i]
+          + mostafeedInfoRes[i + 1]
+          + mostafeedInfoRes[i + 2]
+          + mostafeedInfoRes[i + 3]
+          + mostafeedInfoRes[i + 4]
+          + mostafeedInfoRes[i + 5]
+        );
+      }
+    };
   }
 
   res.statusCode = 200;
