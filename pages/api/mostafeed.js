@@ -1,31 +1,34 @@
 export default async function Mostafeed(req, res) {
-  console.log(req);
+  
 
-  const mostafeedInfoRes = await fetch("https://www.alber.org.sa/nizam/api/mostafeed/1012762967")
+  console.log("\n");
+  const toCooki = JSON.stringify(await req.cookies);
+  console.log("COOKI:  " + toCooki);
+  const toQuery = JSON.stringify(await req.query);
+  console.log("QUERY:  " + toQuery);
+  const toBody = JSON.stringify(await req.body);
+  console.log("BODY:  " + toBody);
+  console.log("\n");
+
+  // const reqreq = await req;
+  // console.log("Good luck:  " + reqreq);
+
+  const mostafeedID = "1012762967";
+  const mostafeedInfoRes = await fetch(`https://www.alber.org.sa/nizam/api/mostafeed/${mostafeedID}`)
     .then(res => res.json());
-
-  //console.log("MOSTAFEED    " + mostafeedInfoRes);
+  
+  const reply1 =  `+ ${mostafeedInfoRes[0]}`
+                + `\n + ${mostafeedInfoRes[1]}`
+                + `\n + ${mostafeedInfoRes[2]}`
+                + `\n + ${mostafeedInfoRes[3]}`
+                + `\n + ${mostafeedInfoRes[4]}` 
+                + `\n + ${mostafeedInfoRes[5]}`
   
   let replies = [{
-    "message":
-      `      + ${mostafeedInfoRes[0]}
-      + ${mostafeedInfoRes[1]}
-      + ${mostafeedInfoRes[2]}
-      + ${mostafeedInfoRes[3]}
-      + ${mostafeedInfoRes[4]}
-      + ${mostafeedInfoRes[5]}`
+    "message":`${reply1}`
   }];
 
 
-  // let replies = []
-  // for (let i = 0; i < 3; i++) {
-  //   //replies[i] = { "message":  mostafeedInfoRes[i]}
-  //   replies[i] = {
-  //     "message": `${mostafeedInfoRes[0]} \n ${mostafeedInfoRes[1]}`
-  //   };
-  // }
-
   res.statusCode = 200;
-  //res.json(mostafeedInfoRes);
   res.json({ replies });
 }
